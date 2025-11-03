@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { addToStoredList } from "../../utility/addToDB";
 
 const BookDetail = () => {
-  const { bookId } = useParams();
+  const { bookId: currentBookId } = useParams();
 
   const data = useLoaderData();
 
-  const clickedBook = data.find((book) => book.bookId === parseInt(bookId));
+  const clickedBook = data.find(
+    (book) => book.bookId === parseInt(currentBookId)
+  );
 
   const {
     image,
@@ -20,7 +24,13 @@ const BookDetail = () => {
     yearOfPublishing,
   } = clickedBook;
 
-  console.log(bookId);
+  const handleReadList = () => {
+    addToStoredList(currentBookId, "read-list");
+  }
+  const handleWishList = () => {
+    addToStoredList(currentBookId, "wish-list");
+  }
+
   return (
     <div
       className="card lg:card-side py-5
@@ -41,7 +51,9 @@ const BookDetail = () => {
         <div className="flex gap-3 mt-6">
           <p className="font-bold">Tag</p>
           {tags.map((tag, i) => (
-            <p className="font-medium text-[rgba(35,190,10)]">#{tag}</p>
+            <p key={i} className="font-medium text-[rgba(35,190,10)]">
+              #{tag}
+            </p>
           ))}
         </div>
         <p className="border-b border-red my-5"></p>
@@ -62,10 +74,16 @@ const BookDetail = () => {
         </div>
 
         <div className="card-actions flex gap-5 text-lg font-semibold">
-          <button className="btn btn-primary border border-[rgba(19,19,19,0.3)] px-5 py-4">
+          <button
+            onClick={handleReadList}
+            className="btn btn-primary border border-[rgba(19,19,19,0.3)] px-5 py-4"
+          >
             Read
           </button>
-          <button className="btn btn-primary border border-[rgba(19,19,19,0.3)] px-5 py-4 bg-[rgba(80,177,201,1)] text-white">
+          <button
+            onClick={handleWishList}
+            className="btn btn-primary border border-[rgba(19,19,19,0.3)] px-5 py-4 bg-[rgba(80,177,201,1)] text-white"
+          >
             Wishlist
           </button>
         </div>

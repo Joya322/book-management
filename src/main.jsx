@@ -17,28 +17,33 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/',
-        element: <Home/>
+        path: "/",
+        element: <Home />,
       },
       {
-        path: '/books/:bookId',
+        path: "/books/:bookId",
         element: <BookDetail />,
-        loader: () => fetch('/booksData.json')
+        // worst way
+        loader: () => fetch("./booksData.json"),
       },
       {
-        path: '/listedbooks',
-        element: <ListedBooks/>
+        path: "/listedbooks",
+        element: <ListedBooks />,
+        // worst way
+        loader: () => fetch("./booksData.json"),
       },
       {
-        path: '/pagestoread',
-        element: <PagesToRead/>
-      }
-    ]
-  }
+        path: "/pagestoread",
+        element: <PagesToRead />,
+      },
+    ],
+  },
 ]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}/>
-  </StrictMode>,
-)
+    <RouterProvider
+      router={router}
+    />
+  </StrictMode>
+);

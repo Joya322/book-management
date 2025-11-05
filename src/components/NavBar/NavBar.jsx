@@ -1,16 +1,39 @@
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 const NavBar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "text-blue-500 font-bold" : "text-gray-700"
+          }
+          end
+          // This ensures the “Home” link isn’t marked active on every subpage (like /listedbooks).
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/listedbooks">Listed Books</NavLink>
+        <NavLink
+          to="/listedbooks"
+          className={({ isActive }) =>
+            isActive ? "text-blue-500 font-bold" : "text-gray-700"
+          }
+        >
+          Listed Books
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/pagestoread">Pages to Read</NavLink>
+        <NavLink
+          to="/pagestoread"
+          className={({ isActive }) =>
+            isActive ? "text-blue-500 font-bold" : "text-gray-700"
+          }
+        >
+          Pages to Read
+        </NavLink>
       </li>
     </>
   );

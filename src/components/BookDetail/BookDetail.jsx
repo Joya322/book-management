@@ -42,9 +42,9 @@ const BookDetail = () => {
       <div className="lg:w-8/12 text-[rgba(19,19,19)]">
         <h2 className="card-title text-4xl font-bold mb-4">{bookName}</h2>
         <p className="text-xl font-medium opacity-80">By : {author}</p>
-        <p className="border-b border-red my-5"></p>
+        <p className="border-b my-5"></p>
         <p className="font-medium text-xl opacity-80">{category}</p>
-        <p className="border-b border-red my-5"></p>
+        <p className="border-b my-5"></p>
         <p className="font-bold">
           Review: <span className="font-medium opacity-70"> {review}</span>
         </p>
@@ -56,7 +56,7 @@ const BookDetail = () => {
             </p>
           ))}
         </div>
-        <p className="border-b border-red my-5"></p>
+        <p className="border-b my-5"></p>
 
         <div className="flex gap-14 mb-7">
           <div className="text-[rgba(19,19,19,0.7)] flex flex-col gap-3">
